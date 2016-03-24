@@ -1,0 +1,94 @@
+<?php
+/**
+ * @file
+ * Code for the Resposta feature.
+ */
+
+include_once 'resposta.features.inc';
+
+/**
+ * Implements hook_block_info().
+ */
+function resposta_block_info()
+{
+    $blocks = array();
+
+    $blocks['block_form_resposta'] = array(
+        'info' => t('Block Form Resposta'),
+        'title' => t('Resposta'),
+        'region' => 'content',
+        'status' => 1,
+        'cache' => DRUPAL_NO_CACHE,
+    );
+
+    return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function resposta_block_view($delta = '')
+{
+    $block = array();
+
+    switch ($delta) {
+        case 'block_form_resposta' :
+            $block['content'] = resposta_block_content();
+            $block['subject'] = t('My block title');
+            break;
+    }
+
+    return $block;
+}
+
+function resposta_block_content() {
+    $node = node_load(arg(1));
+    if ($node->field_ticket_status[LANGUAGE_NONE][0]['value'] == 'aguardando') {
+        return  drupal_get_form('form_example_form');
+    }
+}
+
+function form_example_form($form, &$form_state) {
+
+    global $user;
+
+    $form['body'] = array(
+        '#type' => 'text_format', //you can find a list of available types in the form api
+        '#required' => TRUE, //make this field required
+        );
+
+    $form['ticket_nid'] = array(
+        '#type' => 'hidden',
+        '#value' => arg(1)
+    );
+
+    $form['uid'] = array(
+        '#type' => 'hidden',
+        '#value' => $user->uid,
+    );
+
+    $form['submit_button'] = array(
+        '#type' => 'submit',
+        '#value' => t('Click Here!'),
+        '#validate' => array('resposta_form_validate'),
+        '#submit' => array('resposta_form_submit')
+    );
+
+
+    return $form;
+}
+
+function resposta_form_validate($form, &$form_state) {
+
+}
+
+function resposta_form_submit($form, &$form_state) {
+
+    $resposta = new stdClass();
+    $resposta->type = 'resposta';
+    node_object_prepare($resposta);
+    $resposta->body[LANGUAGE_NONE][0]['value'] = $form_state['values']['body']['value'];
+    $resposta->title = 'Resposta';
+    $resposta->field_resposta_ticket[LANGUAGE_NONE][0]['target_id'] = $form_state['values']['ticket_nid'];
+    node_save($resposta);
+}

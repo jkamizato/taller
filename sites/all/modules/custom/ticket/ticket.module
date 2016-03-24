@@ -1,0 +1,17 @@
+<?php
+/**
+ * @file
+ * Code for the Ticket feature.
+ */
+
+include_once 'ticket.features.inc';
+
+
+/**
+ * Implements hook_views_query_alter().
+ */
+function ticket_views_query_alter(&$view, &$query)
+{
+    //kpr(arg(1));
+    //kpr($view);
+}
