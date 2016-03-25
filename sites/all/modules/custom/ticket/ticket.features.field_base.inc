@@ -58,15 +58,15 @@ function ticket_field_default_field_bases() {
       'cache_enabled' => 0,
       'granularity' => array(
         'day' => 'day',
-        'hour' => 'hour',
-        'minute' => 'minute',
+        'hour' => 0,
+        'minute' => 0,
         'month' => 'month',
         'second' => 0,
         'year' => 'year',
       ),
-      'timezone_db' => 'UTC',
+      'timezone_db' => '',
       'todate' => '',
-      'tz_handling' => 'site',
+      'tz_handling' => 'none',
     ),
     'translatable' => 0,
     'type' => 'datestamp',
@@ -96,6 +96,21 @@ function ticket_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'taxonomy_term_reference',
+  );
+
+  // Exported field_base: 'field_ticket_codigo'.
+  $field_bases['field_ticket_codigo'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_ticket_codigo',
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'serial',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'serial',
   );
 
   // Exported field_base: 'field_ticket_produto'.

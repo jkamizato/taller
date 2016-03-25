@@ -22,7 +22,7 @@ function ticket_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 2,
+        'weight' => 3,
       ),
       'teaser' => array(
         'label' => 'hidden',
@@ -51,7 +51,7 @@ function ticket_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => -4,
+      'weight' => 2,
     ),
   );
 
@@ -66,7 +66,7 @@ function ticket_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 4,
+        'weight' => 5,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -87,7 +87,7 @@ function ticket_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 0,
+      'weight' => 6,
     ),
   );
 
@@ -101,7 +101,7 @@ function ticket_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 3,
+        'weight' => 4,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -134,49 +134,12 @@ function ticket_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_text',
-      'weight' => -1,
+      'weight' => 5,
     ),
   );
 
   // Exported field_instance: 'node-ticket-field_ticket_categoria'.
   $field_instances['node-ticket-field_ticket_categoria'] = array(
-    'bundle' => 'ticket',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'taxonomy',
-        'settings' => array(),
-        'type' => 'taxonomy_term_reference_plain',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_ticket_categoria',
-    'label' => 'Categoria',
-    'required' => 1,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_select',
-      'weight' => -3,
-    ),
-  );
-
-  // Exported field_instance: 'node-ticket-field_ticket_produto'.
-  $field_instances['node-ticket-field_ticket_produto'] = array(
     'bundle' => 'ticket',
     'default_value' => NULL,
     'deleted' => 0,
@@ -197,6 +160,79 @@ function ticket_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
+    'field_name' => 'field_ticket_categoria',
+    'label' => 'Categoria',
+    'required' => 1,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 3,
+    ),
+  );
+
+  // Exported field_instance: 'node-ticket-field_ticket_codigo'.
+  $field_instances['node-ticket-field_ticket_codigo'] = array(
+    'bundle' => 'ticket',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'serial',
+        'settings' => array(),
+        'type' => 'serial_formatter_default',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_ticket_codigo',
+    'label' => 'Código',
+    'required' => FALSE,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'serial',
+      'settings' => array(),
+      'type' => 'serial',
+      'weight' => 0,
+    ),
+  );
+
+  // Exported field_instance: 'node-ticket-field_ticket_produto'.
+  $field_instances['node-ticket-field_ticket_produto'] = array(
+    'bundle' => 'ticket',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_plain',
+        'weight' => 2,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
     'field_name' => 'field_ticket_produto',
     'label' => 'Produto',
     'required' => 0,
@@ -208,7 +244,7 @@ function ticket_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => -2,
+      'weight' => 4,
     ),
   );
 
@@ -227,7 +263,7 @@ function ticket_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 5,
+        'weight' => 6,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -248,7 +284,7 @@ function ticket_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 1,
+      'weight' => 7,
     ),
   );
 
@@ -256,6 +292,7 @@ function ticket_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Atendido por');
   t('Categoria');
+  t('Código');
   t('Mensagem');
   t('Produto');
   t('Status');

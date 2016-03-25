@@ -32,12 +32,11 @@ function ticket_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
   $handler->display->display_options['style_plugin'] = 'table';
-  /* Field: Content: Title */
-  $handler->display->display_options['fields']['title']['id'] = 'title';
-  $handler->display->display_options['fields']['title']['table'] = 'node';
-  $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Field: Content: Código */
+  $handler->display->display_options['fields']['field_ticket_codigo']['id'] = 'field_ticket_codigo';
+  $handler->display->display_options['fields']['field_ticket_codigo']['table'] = 'field_data_field_ticket_codigo';
+  $handler->display->display_options['fields']['field_ticket_codigo']['field'] = 'field_ticket_codigo';
+  $handler->display->display_options['fields']['field_ticket_codigo']['label'] = 'Código do Ticket';
   /* Field: Content: Categoria */
   $handler->display->display_options['fields']['field_ticket_categoria']['id'] = 'field_ticket_categoria';
   $handler->display->display_options['fields']['field_ticket_categoria']['table'] = 'field_data_field_ticket_categoria';
@@ -59,9 +58,8 @@ function ticket_views_default_views() {
   $handler->display->display_options['fields']['field_ticket_atualizacao']['id'] = 'field_ticket_atualizacao';
   $handler->display->display_options['fields']['field_ticket_atualizacao']['table'] = 'field_data_field_ticket_atualizacao';
   $handler->display->display_options['fields']['field_ticket_atualizacao']['field'] = 'field_ticket_atualizacao';
-  $handler->display->display_options['fields']['field_ticket_atualizacao']['type'] = 'date_plain';
   $handler->display->display_options['fields']['field_ticket_atualizacao']['settings'] = array(
-    'format_type' => 'long',
+    'format_type' => 'medium_brasil',
     'fromto' => 'both',
     'multiple_number' => '',
     'multiple_from' => '',
@@ -79,6 +77,18 @@ function ticket_views_default_views() {
   $handler->display->display_options['fields']['field_ticket_status']['id'] = 'field_ticket_status';
   $handler->display->display_options['fields']['field_ticket_status']['table'] = 'field_data_field_ticket_status';
   $handler->display->display_options['fields']['field_ticket_status']['field'] = 'field_ticket_status';
+  $handler->display->display_options['fields']['field_ticket_status']['exclude'] = TRUE;
+  /* Field: Views: Views Conditional */
+  $handler->display->display_options['fields']['views_conditional']['id'] = 'views_conditional';
+  $handler->display->display_options['fields']['views_conditional']['table'] = 'views_conditional';
+  $handler->display->display_options['fields']['views_conditional']['field'] = 'views_conditional';
+  $handler->display->display_options['fields']['views_conditional']['label'] = 'Status';
+  $handler->display->display_options['fields']['views_conditional']['if'] = 'field_ticket_status';
+  $handler->display->display_options['fields']['views_conditional']['condition'] = '1';
+  $handler->display->display_options['fields']['views_conditional']['equalto'] = 'Aguardando';
+  $handler->display->display_options['fields']['views_conditional']['then'] = '<a href="/ticket/4/resposta">Responder</a>';
+  $handler->display->display_options['fields']['views_conditional']['or'] = '[field_ticket_status] ';
+  $handler->display->display_options['fields']['views_conditional']['strip_tags'] = 0;
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
