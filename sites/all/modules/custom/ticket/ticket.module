@@ -6,12 +6,16 @@
 
 include_once 'ticket.features.inc';
 
-
 /**
- * Implements hook_views_query_alter().
+ * Implements hook_form_alter().
  */
-function ticket_views_query_alter(&$view, &$query)
+function ticket_form_alter(&$form, &$form_state, $form_id)
 {
-    //kpr(arg(1));
-    //kpr($view);
+    if ($form_id != 'ticket_node_form') {
+        return;
+    }
+    $form['field_ticket_atualizacao']['#access'] = false;
+    $form['field_ticket_atendido_user']['#access'] = false;
+    $form['field_ticket_status']['#access'] = false;
+    kpr($form);
 }
