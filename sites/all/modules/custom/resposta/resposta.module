@@ -91,4 +91,36 @@ function resposta_form_submit($form, &$form_state) {
     $resposta->title = 'Resposta';
     $resposta->field_resposta_ticket[LANGUAGE_NONE][0]['target_id'] = $form_state['values']['ticket_nid'];
     node_save($resposta);
+
+
+    $ticket = node_load($form_state['values']['ticket_nid']);
+    $ticket->field_ticket_atendido_user[LANGUAGE_NONE][0]['target_id'] = $form_state['values']['uid'];
+    $ticket->field_ticket_atualizacao[LANGUAGE_NONE][0]['value'] = time();
+    node_save($ticket);
+}
+
+function resposta_menu() {
+    $items['ticket/%/resposta'] = array(
+        'page callback' => '_ticket_node_resposta',
+        'access arguments' => array('access content')
+    );
+
+    return $items;
+}
+
+function _ticket_node_resposta()
+{
+    return theme('ticket_node_resposta', array('node' => node_load(arg(1))));
+}
+
+/**
+ * Implements hook_theme().
+ */
+function resposta_theme($existing, $type, $theme, $path)
+{
+    return array(
+        'ticket_node_resposta' => array(
+            'template' => 'node'
+        )
+    );
 }
