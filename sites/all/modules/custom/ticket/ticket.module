@@ -21,11 +21,18 @@ function ticket_form_alter(&$form, &$form_state, $form_id)
 }
 
 /**
- * Implements hook_node_validate().
+ * Implements hook_views_query_alter().
  */
-function ticket_node_validate($node, $form, &$form_state)
+function ticket_views_query_alter(&$view, &$query)
 {
-    $ticketController = new TicketController();
-   // kpr($node); die();
-}
+    if ($view->name != 'tickets') {
+        return;
+    }
 
+    global $user;
+    $query->where[1]['conditions'][] = array(
+        'field' => 'node.uid',
+        'operator' => 'in',
+        'value' => array($user->uid)
+    );
+}
