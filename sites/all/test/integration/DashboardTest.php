@@ -22,8 +22,11 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase
     {
         $this->url('/tickets');
 
+        $fieldSetTicket = $this->byTag('fieldset')->byTag('legend')->text();
+
         $this->assertContains('Bem vindo ao Suporte', $this->byTag('body')->text());
         $this->assertContains('Abrir um novo ticket', $this->source());
+        $this->assertContains('Histórico de tickets', $fieldSetTicket);
     }
 
 }
