@@ -27,6 +27,9 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase
         $this->assertContains('Bem vindo ao Suporte', $this->byTag('body')->text());
         $this->assertContains('Abrir um novo ticket', $this->source());
         $this->assertContains('Histórico de tickets', $fieldSetTicket);
+        $this->assertContains('Categoria', $this->byTag('form')->text());
+        $this->assertContains('Produto', $this->byTag('form')->text());
+        $this->assertContains('Filtrar', $this->source());
     }
 
 }
