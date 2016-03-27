@@ -7,6 +7,12 @@
  * Time: 19:29
  */
 
+
+namespace Resposta\Controller;
+use Ticket\Model\TicketModel;
+require_once __DIR__ . '/../ticket/TicketModel.php';
+
+
 class RespostaController
 {
     /** @var  TicketModel */

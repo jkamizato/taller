@@ -6,7 +6,10 @@
  * Date: 3/25/16
  * Time: 18:56
  */
-include_once 'TicketModel.php';
+
+namespace Ticket\Controller;
+use Ticket\Model\TicketModel;
+
 
 class TicketController
 {
