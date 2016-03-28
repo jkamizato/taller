@@ -44,6 +44,8 @@ function resposta_block_view($delta = '')
 
 function resposta_block_content() {
     $node = node_load(arg(1));
+
+    var_dump($node->field_ticket_status[LANGUAGE_NONE][0]['value']);
     if ($node->field_ticket_status[LANGUAGE_NONE][0]['value'] == 'aguardando') {
         return  drupal_get_form('_resposta_form');
     }
@@ -54,9 +56,8 @@ function _resposta_form($form, &$form_state)
     global $user;
 
     $form['body'] = array(
-        '#type' => 'text_format',
-        '#required' => true,
-        );
+        '#type' => 'text_format'
+    );
 
     $form['file'] = array(
         '#type' => 'file',
