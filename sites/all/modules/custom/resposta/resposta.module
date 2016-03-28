@@ -54,8 +54,8 @@ function _resposta_form($form, &$form_state)
     global $user;
 
     $form['body'] = array(
-        '#type' => 'text_format', //you can find a list of available types in the form api
-        '#required' => TRUE, //make this field required
+        '#type' => 'text_format',
+        '#required' => true,
         );
 
     $form['file'] = array(
@@ -75,35 +75,60 @@ function _resposta_form($form, &$form_state)
 
     $form['submit_button'] = array(
         '#type' => 'submit',
-        '#value' => t('Salvar'),
+        '#value' => t('Responder'),
         '#validate' => array('resposta_form_validate'),
         '#submit' => array('resposta_form_submit')
+    );
+
+    $form['fechar_button'] = array(
+        '#type' => 'button',
+        //'#attributes' => array('onClick' => '/ticket/' . arg(1) . '/fechar\\\\\\\\'),
+        '#value' => 'Fechar ticket',
+        '#validate' => array('ticket_fechar_validate'),
+        '#executes_submit_callback' => TRUE,
+        '#submit' => array('ticket_fechar_submit')
     );
 
 
     return $form;
 }
 
+function ticket_fechar_validate($form, &$form_state) {
+    if ($form_state['validate_handlers'][0] != 'ticket_fechar_validate') {
+        return;
+    }
+}
+
+function ticket_fechar_submit($form, &$form_state)
+{
+    $ticket = node_load($form_state['values']['ticket_nid']);
+    $ticket->field_ticket_status[LANGUAGE_NONE][0]['value'] = 'fechado';
+    node_save($ticket);
+    //drupal_goto('tickets');
+
+}
+
 function resposta_form_validate($form, &$form_state) {
+    if ($form_state['validate_handlers'][0] != 'resposta_form_validate') {
+        return;
+    }
+
     $respostaController = new \Resposta\Controller\RespostaController();
     if (!$respostaController->saveValidation($form_state['values']['ticket_nid'])) {
         form_set_error('body', 'Não foi possível salvar a resposta');
     }
 
-    $file = file_save_upload('file');
-    $file = file_move($file, 'public://');
-    $form_state['storage']['file'] = $file;
+    if ($form_state['values']['file']) {
+        $file = file_save_upload('file');
+        $file = file_move($file, 'public://');
+        $form_state['storage']['file'] = $file;
+    }
 }
 
 function resposta_form_submit($form, &$form_state) {
-
-
     $file = $form_state['storage']['file'];
-    // We are done with the file, remove it from storage.
     unset($form_state['storage']['file']);
-    // Make the storage of the file permanent
     $file->status = FILE_STATUS_PERMANENT;
-    // Save file status.
     file_save($file);
     $resposta = new stdClass();
     $resposta->type = 'resposta';
