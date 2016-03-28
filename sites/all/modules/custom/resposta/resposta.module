@@ -104,8 +104,7 @@ function ticket_fechar_submit($form, &$form_state)
     $ticket = node_load($form_state['values']['ticket_nid']);
     $ticket->field_ticket_status[LANGUAGE_NONE][0]['value'] = 'fechado';
     node_save($ticket);
-    //drupal_goto('tickets');
-
+    drupal_set_message('Ticket fechado', 'status');
 }
 
 function resposta_form_validate($form, &$form_state) {

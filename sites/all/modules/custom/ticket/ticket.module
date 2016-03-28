@@ -30,6 +30,10 @@ function ticket_views_query_alter(&$view, &$query)
     }
 
     global $user;
+    if (in_array('administrador', $user->roles) || in_array('atendente', $user->roles)) {
+        return;
+    }
+
     $query->where[1]['conditions'][] = array(
         'field' => 'node.uid',
         'operator' => 'in',
