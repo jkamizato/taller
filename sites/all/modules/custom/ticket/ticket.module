@@ -46,3 +46,14 @@ function ticket_views_query_alter(&$view, &$query)
         'value' => array($user->uid)
     );
 }
+
+/**
+ * Implements hook_views_pre_render().
+ */
+function ticket_views_pre_render(&$view)
+{
+    foreach ($view->result as $item) {
+        $item->field_field_ticket_codigo[0]['rendered']['#markup'] =
+            str_pad($item->field_field_ticket_codigo[0]['rendered']['#markup'], 6, 0, STR_PAD_LEFT);
+    }
+}

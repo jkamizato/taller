@@ -90,7 +90,6 @@ function _resposta_form($form, &$form_state)
         '#submit' => array('ticket_fechar_submit')
     );
 
-
     return $form;
 }
 
@@ -140,8 +139,6 @@ function resposta_form_submit($form, &$form_state) {
     $resposta->field_resposta_arquivo[LANGUAGE_NONE][0]['display'] = 1;
 
     node_save($resposta);
-
-
 
     $ticket = node_load($form_state['values']['ticket_nid']);
     $ticket->field_ticket_atendido_user[LANGUAGE_NONE][0]['target_id'] = $form_state['values']['uid'];
