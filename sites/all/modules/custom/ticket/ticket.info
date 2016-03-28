@@ -1,7 +1,7 @@
 name = Ticket
 core = 7.x
 package = Features
-version = 7.x-1.2
+version = 7.x-1.3
 dependencies[] = date
 dependencies[] = entityreference
 dependencies[] = features
