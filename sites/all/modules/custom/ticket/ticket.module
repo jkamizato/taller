@@ -15,9 +15,15 @@ function ticket_form_alter(&$form, &$form_state, $form_id)
     if ($form_id != 'ticket_node_form') {
         return;
     }
+    global $user;
+
     $form['field_ticket_atualizacao']['#access'] = false;
     $form['field_ticket_atendido_user']['#access'] = false;
-    $form['field_ticket_status']['#access'] = false;
+
+    if (!(in_array('administrador', $user->roles) || in_array('atendente', $user->roles))) {
+        $form['field_ticket_status']['#access'] = false;
+    }
+
 }
 
 /**
