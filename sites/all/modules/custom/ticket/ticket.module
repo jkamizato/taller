@@ -67,6 +67,9 @@ function ticket_views_pre_render(&$view)
  */
 function ticket_node_validate($node, $form, &$form_state)
 {
+    if ($node->type != 'ticket') {
+        return;
+    }
     $ticketController = new \Ticket\Controller\TicketController();
     if (!$ticketController->presenceFieldsValidation($node)) {
         form_set_error('title', t('Error Presence Validation.'));
