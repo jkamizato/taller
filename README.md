@@ -1,5 +1,10 @@
 # Teste taller 
 
+## Instalação
+### Foi criado um dump do banco local em `db/taller.sql`
+### Outra opção é fazer a instalação do zero e restaurar as features 'ticket' e 'resposta'
+
+
 ## Teste Unitário
 Foram escritos 2 tipos de testes:
  - Módulos. Onde foi testado os métodos de controller e model
