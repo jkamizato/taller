@@ -14,3 +14,8 @@ Antes de rodar o camando acima, terá que abrir uma nova aba do terminal,
 entrar na pasta `/sites/all/vendor/bin` e deixar rodando o comando `java -jar selenium-server-standalone-2.53.0.jar`, 
 para rodar o selenium.
 
+
+## Usuários
+- admin:123
+- cliente:123
+- atendente:123
