@@ -4,6 +4,7 @@
 Foram escritos 2 tipos de testes:
  - Módulos. Onde foi testado os métodos de controller e model
  - Integração. Onde foi testado a presença de componentes na tela. Para tal foi utilizado selenium.
+ - Os testes estão na pasta `sites/all/test`
  
 ### Rodando os testes
 Na pasta raiz do projeto, basta rodar o comando `./sites/all/vendor/bin/phpunit sites/all/test`
