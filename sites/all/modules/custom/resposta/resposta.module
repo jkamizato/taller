@@ -133,8 +133,8 @@ function resposta_form_validate($form, &$form_state) {
         form_set_error('body', 'Não foi possível salvar a resposta');
     }
 
-    if ($form_state['values']['file']) {
-        $file = file_save_upload('file');
+    $file = file_save_upload('file');
+    if ($file) {
         $file = file_move($file, 'public://');
         $form_state['storage']['file'] = $file;
     }
@@ -181,10 +181,10 @@ function _resposta_save(&$form_state, $file = null) {
  * @param $form_state
  * @return mixed
  */
-function _resposta_save_file($form_state) {
+function _resposta_save_file(&$form_state) {
 
     if (!isset($form_state['storage'])) {
-        return;
+        //return;
     }
     $file = $form_state['storage']['file'];
     unset($form_state['storage']['file']);
