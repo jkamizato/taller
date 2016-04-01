@@ -19,4 +19,20 @@ class TicketController
         $this->ticketModel = new TicketModel();
     }
 
+    public function presenceFieldsValidation($node)
+    {
+        $lang = $node->language;
+        if ($node->field_ticket_categoria[$lang][0]['tid'] &&
+            $node->field_ticket_produto[$lang][0]['tid'] &&
+            $node->field_ticket_status[$lang][0]['value'] &&
+            $node->body[$lang][0]['value'] &&
+            $node->title
+        ) {
+            return true;
+        }
+        return false;
+    }
+
+
+
 }
