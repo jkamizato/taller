@@ -18,7 +18,7 @@ Foram escritos 2 tipos de testes:
 Na pasta raiz do projeto, basta rodar o comando `./sites/all/vendor/bin/phpunit sites/all/test`
 
 ### Rodando os testes completo (com selenium)
-Antes de rodar o camando acima, terá que abrir uma nova aba do terminal, 
+Antes de rodar o comando acima, terá que abrir uma nova aba do terminal, 
 entrar na pasta `/sites/all/vendor/bin` e deixar rodando o comando `java -jar selenium-server-standalone-2.53.0.jar`, 
 para rodar o selenium.
 
