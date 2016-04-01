@@ -29,7 +29,7 @@ para rodar o selenium.
 ## Overview do sistema
 
 ### Camada OO
-Dentro dos módulos, criei o Controller e Model para poder realizar teste da regra de negócio.
+Dentro dos módulos, criei o Controller e Model para poder abstrair a regrande négócio (neste caso, só as validações dos campos) e por sua vez realizar teste o teste unitário
 
 ### Usuários (login:senha)
 - admin:123
