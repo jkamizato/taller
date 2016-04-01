@@ -3,9 +3,9 @@ Solução do teste em Drupal 7
 
 
 ## Instalação
-Foi criado um dump do banco local em `db/taller.sql`.
-
-Outra opção é fazer a instalação do zero e restaurar as features 'ticket' e 'resposta'
+Basta fazer um clone do projeto e se precisar, restaurar o banco: 
+- Foi criado um dump do banco local em `db/taller.sql`.
+- Outra opção é fazer a instalação do zero e restaurar as features 'ticket' e 'resposta'
 
 
 ## Teste Unitário
