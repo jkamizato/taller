@@ -31,20 +31,39 @@ function resposta_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
+  /* Field: Content: Author uid */
+  $handler->display->display_options['fields']['uid']['id'] = 'uid';
+  $handler->display->display_options['fields']['uid']['table'] = 'node';
+  $handler->display->display_options['fields']['uid']['field'] = 'uid';
+  $handler->display->display_options['fields']['uid']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['uid']['link_to_user'] = FALSE;
   /* Field: Content: Updated date */
   $handler->display->display_options['fields']['changed']['id'] = 'changed';
   $handler->display->display_options['fields']['changed']['table'] = 'node';
   $handler->display->display_options['fields']['changed']['field'] = 'changed';
-  /* Field: Content: Mensagem */
+  $handler->display->display_options['fields']['changed']['label'] = 'Data';
+  $handler->display->display_options['fields']['changed']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['changed']['date_format'] = 'custom';
+  $handler->display->display_options['fields']['changed']['custom_date_format'] = 'd/m/Y';
+  $handler->display->display_options['fields']['changed']['second_date_format'] = 'long';
+  /* Field: Content: Body */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
   $handler->display->display_options['fields']['body']['label'] = '';
   $handler->display->display_options['fields']['body']['alter']['nl2br'] = TRUE;
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['body']['type'] = 'text_plain';
   $handler->display->display_options['fields']['body']['settings'] = array(
     'trim_length' => '600',
   );
+  /* Field: Content: Enviar arquivo */
+  $handler->display->display_options['fields']['field_resposta_arquivo']['id'] = 'field_resposta_arquivo';
+  $handler->display->display_options['fields']['field_resposta_arquivo']['table'] = 'field_data_field_resposta_arquivo';
+  $handler->display->display_options['fields']['field_resposta_arquivo']['field'] = 'field_resposta_arquivo';
+  $handler->display->display_options['fields']['field_resposta_arquivo']['label'] = 'Arquivo';
+  $handler->display->display_options['fields']['field_resposta_arquivo']['hide_empty'] = TRUE;
+  $handler->display->display_options['fields']['field_resposta_arquivo']['click_sort_column'] = 'fid';
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
