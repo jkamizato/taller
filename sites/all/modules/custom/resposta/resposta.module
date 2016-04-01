@@ -182,6 +182,10 @@ function _resposta_save(&$form_state, $file = null) {
  * @return mixed
  */
 function _resposta_save_file($form_state) {
+
+    if (!isset($form_state['storage'])) {
+        return;
+    }
     $file = $form_state['storage']['file'];
     unset($form_state['storage']['file']);
     $file->status = FILE_STATUS_PERMANENT;
