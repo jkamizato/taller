@@ -1,5 +1,5 @@
 # Teste taller 
-Teste em Drupal 7
+Solução do teste em Drupal 7
 
 
 ## Instalação
