@@ -12,8 +12,9 @@ Basta fazer um clone do projeto e se precisar, restaurar o banco:
 Foram escritos 2 tipos de testes:
  - Módulos. Onde foi testado os métodos de controller e model
  - Integração. Onde foi testado a presença de componentes na tela. Para tal foi utilizado selenium.
- - Os testes estão na pasta `sites/all/test`
- - Fiz a chamada do arquivo `sites/all/test/phpunit_bootstrap.inc`, que basicamente carrega o core do Drupal para uma possível utilização dentro do teste.
+
+Os testes estão na pasta `sites/all/test`
+Fiz a chamada do arquivo `sites/all/test/phpunit_bootstrap.inc`, que basicamente carrega o core do Drupal para uma possível utilização dentro do teste.
  
 ### Rodando os testes
 Na pasta raiz do projeto, basta rodar o comando `./sites/all/vendor/bin/phpunit sites/all/test`
