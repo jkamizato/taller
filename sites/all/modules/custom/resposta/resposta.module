@@ -45,12 +45,16 @@ function resposta_block_view($delta = '')
 function resposta_block_content() {
     $node = node_load(arg(1));
 
-    var_dump($node->field_ticket_status[LANGUAGE_NONE][0]['value']);
     if ($node->field_ticket_status[LANGUAGE_NONE][0]['value'] == 'aguardando') {
         return  drupal_get_form('_resposta_form');
     }
 }
 
+/**
+ * @param $form
+ * @param $form_state
+ * @return mixed
+ */
 function _resposta_form($form, &$form_state)
 {
     global $user;
@@ -83,7 +87,6 @@ function _resposta_form($form, &$form_state)
 
     $form['fechar_button'] = array(
         '#type' => 'button',
-        //'#attributes' => array('onClick' => '/ticket/' . arg(1) . '/fechar\\\\\\\\'),
         '#value' => 'Fechar ticket',
         '#validate' => array('ticket_fechar_validate'),
         '#executes_submit_callback' => TRUE,
@@ -93,12 +96,21 @@ function _resposta_form($form, &$form_state)
     return $form;
 }
 
+/**
+ * @param $form
+ * @param $form_state
+ */
 function ticket_fechar_validate($form, &$form_state) {
     if ($form_state['validate_handlers'][0] != 'ticket_fechar_validate') {
         return;
     }
 }
 
+/**
+ * @param $form
+ * @param $form_state
+ * @throws Exception
+ */
 function ticket_fechar_submit($form, &$form_state)
 {
     $ticket = node_load($form_state['values']['ticket_nid']);
@@ -107,6 +119,10 @@ function ticket_fechar_submit($form, &$form_state)
     drupal_set_message('Ticket fechado', 'status');
 }
 
+/**
+ * @param $form
+ * @param $form_state
+ */
 function resposta_form_validate($form, &$form_state) {
     if ($form_state['validate_handlers'][0] != 'resposta_form_validate') {
         return;
@@ -124,11 +140,30 @@ function resposta_form_validate($form, &$form_state) {
     }
 }
 
+/**
+ * @param $form
+ * @param $form_state
+ */
 function resposta_form_submit($form, &$form_state) {
-    $file = $form_state['storage']['file'];
-    unset($form_state['storage']['file']);
-    $file->status = FILE_STATUS_PERMANENT;
-    file_save($file);
+    $file = _resposta_save_file($form_state);
+    _resposta_save($form_state, $file);
+    _resposta_atualiza_ticket($form_state);
+}
+
+/**
+ * @param $form_state
+ * @return bool|mixed
+ * @throws Exception
+ */
+function _resposta_atualiza_ticket(&$form_state) {
+    $ticket = node_load($form_state['values']['ticket_nid']);
+    $ticket->field_ticket_atendido_user[LANGUAGE_NONE][0]['target_id'] = $form_state['values']['uid'];
+    $ticket->field_ticket_atualizacao[LANGUAGE_NONE][0]['value'] = time();
+    node_save($ticket);
+    return $ticket;
+}
+
+function _resposta_save(&$form_state, $file = null) {
     $resposta = new stdClass();
     $resposta->type = 'resposta';
     node_object_prepare($resposta);
@@ -139,11 +174,19 @@ function resposta_form_submit($form, &$form_state) {
     $resposta->field_resposta_arquivo[LANGUAGE_NONE][0]['display'] = 1;
 
     node_save($resposta);
+    return $resposta;
+}
 
-    $ticket = node_load($form_state['values']['ticket_nid']);
-    $ticket->field_ticket_atendido_user[LANGUAGE_NONE][0]['target_id'] = $form_state['values']['uid'];
-    $ticket->field_ticket_atualizacao[LANGUAGE_NONE][0]['value'] = time();
-    node_save($ticket);
+/**
+ * @param $form_state
+ * @return mixed
+ */
+function _resposta_save_file($form_state) {
+    $file = $form_state['storage']['file'];
+    unset($form_state['storage']['file']);
+    $file->status = FILE_STATUS_PERMANENT;
+    file_save($file);
+    return $file;
 }
 
 function resposta_menu() {
