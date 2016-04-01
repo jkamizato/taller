@@ -1,4 +1,6 @@
 # Teste taller 
+Teste em Drupal 7
+
 
 ## Instalação
 ### Foi criado um dump do banco local em `db/taller.sql`
