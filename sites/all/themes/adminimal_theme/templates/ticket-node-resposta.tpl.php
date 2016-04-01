@@ -1,6 +1,6 @@
 <?php
 $language = $node->language;
-kpr($node);?>
+?>
 <h1>Ticket <?php print $node->field_ticket_codigo[$language][0]['value'];?></h1>
 <?php
 $categoria = field_view_field('node', $node, 'field_ticket_categoria', array('type' => 'taxonomy_term_reference_plain'));
