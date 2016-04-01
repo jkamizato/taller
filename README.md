@@ -15,7 +15,7 @@ entrar na pasta `/sites/all/vendor/bin` e deixar rodando o comando `java -jar se
 para rodar o selenium.
 
 
-## Usuários
+## Usuários (login:senha)
 - admin:123
 - cliente:123
 - atendente:123
